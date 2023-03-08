@@ -6,14 +6,12 @@
 
         public string tamaño { get; set; }
 
-        public bool supercharger { get; set; }
-
-        public bool demon { get; set; }
-
         public bool turbo { get; set; }
 
-        public bool nitro { get; set; }
+        public int motorcicleId { get; set; }
 
-        public bool ethanol { get; set; }
+        public Motorcicle motorcicle { get; set; }
+
+
     }
 }

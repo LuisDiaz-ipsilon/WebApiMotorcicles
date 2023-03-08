@@ -10,7 +10,6 @@ namespace WebApiMotorcicles.Entities
 
         public bool piel { get; set; }
 
-        [ForeignKey("Motor")]
-        public int idMotor { get; set; }
+        public List<Motor> motor { get; set; }
     }
 }
