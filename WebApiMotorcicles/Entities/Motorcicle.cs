@@ -4,12 +4,12 @@ namespace WebApiMotorcicles.Entities
 {
     public class Motorcicle
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public string modelo { get; set; }
+        public string Modelo { get; set; }
 
-        public bool piel { get; set; }
+        public bool Piel { get; set; }
 
-        public List<Motor> motor { get; set; }
+        public List<Motor> Motor { get; set; }
     }
 }

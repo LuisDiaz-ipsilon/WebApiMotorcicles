@@ -21,7 +21,7 @@ namespace WebApiMotorcicles.Controllers
         {
             return new List<Motor>()
             {
-                new Motor {id=1, demon =true, ethanol = true, nitro= true, supercharger=true, turbo = true, tamaño = "400CC"}
+                new Motor {Id=1, Tamaño="400CC", Turbo=true}
             };
         }
 
@@ -42,7 +42,7 @@ namespace WebApiMotorcicles.Controllers
         [HttpPut("{id:int}")]
         public async Task<ActionResult> Put(Motor motor, int id)
         {
-            if(motor.id != id)
+            if(motor.Id != id)
             {
                 return BadRequest("No se encontro el motor con el id mencionado");
             }
@@ -55,14 +55,14 @@ namespace WebApiMotorcicles.Controllers
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var exists = await _context.Motores.AnyAsync(x => x.id == id);
+            var exists = await _context.Motores.AnyAsync(x => x.Id == id);
 
             if (!exists)
             {
                 return NotFound("No se encontro el motor con el id ingresado");
             }
 
-            _context.Remove(new Motor() { id = id });
+            _context.Remove(new Motor() { Id = id });
             await _context.SaveChangesAsync();
             return Ok();
         }
