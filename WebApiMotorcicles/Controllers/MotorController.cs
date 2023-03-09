@@ -6,7 +6,7 @@ namespace WebApiMotorcicles.Controllers
 {
     [ApiController]
     [Route("motor")]
-    public class MotorController: ControllerBase
+    public class MotorController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
@@ -25,10 +25,24 @@ namespace WebApiMotorcicles.Controllers
             };
         }
 
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<Motor>> GetById(int id)
+        {
+            return await _context.Motores.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         [HttpPost]
         public async Task<ActionResult> Post (Motor motor)
         {
+            var existeMotocicleta = await _context.Motores.AnyAsync(x => x.Id == motor.MotorcicleId);
+            
+            if(!existeMotocicleta)
+            {
+                return BadRequest("No existe la motocicleta");
+            }
+
             _context.Add(motor);
+            
             await _context.SaveChangesAsync();
             return Ok();
         }
@@ -42,9 +56,17 @@ namespace WebApiMotorcicles.Controllers
         [HttpPut("{id:int}")]
         public async Task<ActionResult> Put(Motor motor, int id)
         {
-            if(motor.Id != id)
+
+            var existeMotor = await _context.Motores.AnyAsync(x => x.Id == motor.Id);
+
+            if(!existeMotor)
             {
-                return BadRequest("No se encontro el motor con el id mencionado");
+                return BadRequest("No existe el motor");
+            }
+
+            if (motor.Id != id)
+            {
+                return BadRequest("El id del Motor no coicide con el de la URL");
             }
 
             _context.Update(motor);
