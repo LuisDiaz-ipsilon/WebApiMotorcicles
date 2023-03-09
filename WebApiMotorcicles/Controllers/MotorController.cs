@@ -21,7 +21,7 @@ namespace WebApiMotorcicles.Controllers
         {
             return new List<Motor>()
             {
-                new Motor {Id=1, Tamaño="400CC", Turbo=true}
+                //new Motor {Id=1, Tamaño="400CC", Turbo=true}
             };
         }
 
@@ -36,10 +36,10 @@ namespace WebApiMotorcicles.Controllers
         {
             var existeMotocicleta = await _context.Motores.AnyAsync(x => x.Id == motor.MotorcicleId);
             
-            if(!existeMotocicleta)
+            /*if(!existeMotocicleta)
             {
-                return BadRequest("No existe la motocicleta");
-            }
+                return BadRequest("No se guardo la moto");
+            }*/
 
             _context.Add(motor);
             
@@ -61,7 +61,8 @@ namespace WebApiMotorcicles.Controllers
 
             if(!existeMotor)
             {
-                return BadRequest("No existe el motor");
+
+                return BadRequest("No existe el motor"+existeMotor+motor.Id);
             }
 
             if (motor.Id != id)
