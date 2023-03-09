@@ -8,9 +8,9 @@
 
         public bool turbo { get; set; }
 
-        public int motorcicleId { get; set; }
+        public int MotorcicleId { get; set; }
 
-        public Motorcicle motorcicle { get; set; }
+        public Motorcicle Motorcicle { get; set; }
 
 
     }
