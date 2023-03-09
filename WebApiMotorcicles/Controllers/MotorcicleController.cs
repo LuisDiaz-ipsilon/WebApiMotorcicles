@@ -21,7 +21,7 @@ namespace WebApiMotorcicles.Controllers
         {
             return new List<Motorcicle>() 
             { 
-                new Motorcicle {id=1, idMotor= 1, modelo="Indian", piel = true}
+                new Motorcicle {Id=1, Modelo="Indian", Piel = true}
             };
         }
 
@@ -43,7 +43,7 @@ namespace WebApiMotorcicles.Controllers
         [HttpPut("{id:int}")]
         public async Task<ActionResult> Put(Motorcicle motocicleta, int id)
         {
-            if(motocicleta.id != id)
+            if(motocicleta.Id != id)
             {
                 return BadRequest("No se contro el id mencionado");
             }
@@ -56,14 +56,14 @@ namespace WebApiMotorcicles.Controllers
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var exist = await _context.Motocicletas.AnyAsync(x => x.id == id);
+            var exist = await _context.Motocicletas.AnyAsync(x => x.Id == id);
 
             if(!exist)
             {
                 return NotFound("No se encontro el id del registro a eliminar.");
             }
 
-            _context.Remove(new Motorcicle() { id = id });
+            _context.Remove(new Motorcicle() { Id = id });
             await _context.SaveChangesAsync();
             return Ok();
         }

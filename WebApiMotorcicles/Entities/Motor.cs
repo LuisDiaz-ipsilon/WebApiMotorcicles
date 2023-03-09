@@ -2,11 +2,11 @@
 {
     public class Motor
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public string tamaño { get; set; }
+        public string Tamaño { get; set; }
 
-        public bool turbo { get; set; }
+        public bool Turbo { get; set; }
 
         public int MotorcicleId { get; set; }
 
